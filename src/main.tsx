@@ -38,9 +38,11 @@ const container = document.getElementById('root')
 if (container) {
   createRoot(container).render(
     <QueryClientProvider client={queryClient}>
+      <h1>Entered to Qurey client</h1>
       <MetronicI18nProvider>
+        <h1>Entered to MetronicProvider</h1>
         <AuthProvider>
-          <h1>Entered to main.tsx</h1>
+          <h1>Entered to Auth Provider</h1>
           <AppRoutes />
         </AuthProvider>
       </MetronicI18nProvider>
