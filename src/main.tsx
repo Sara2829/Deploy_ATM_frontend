@@ -40,6 +40,7 @@ if (container) {
     <QueryClientProvider client={queryClient}>
       <MetronicI18nProvider>
         <AuthProvider>
+          <h1>Entered to main.tsx</h1>
           <AppRoutes />
         </AuthProvider>
       </MetronicI18nProvider>
