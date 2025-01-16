@@ -9,8 +9,11 @@ const DebugComponent = () => {
   )
 }
 
-// Ensure root element exists and assert its type
-const container = document.getElementById('root') as HTMLElement
+const container = document.getElementById('root')
+
+if (!container) {
+  throw new Error('Root container not found. Please ensure index.html contains <div id="root"></div>.')
+}
 
 // Render the debug component
 createRoot(container).render(<DebugComponent />)
