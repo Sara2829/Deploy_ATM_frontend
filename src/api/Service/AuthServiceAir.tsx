@@ -7,7 +7,7 @@ export const AirService = {
   login: async (loginData: LoginBasicInfo): Promise<LoginBasicInfo> => {
     try {
       const response = await axios.post<LoginBasicInfo>(
-        `http://ec2-51-20-51-60.eu-north-1.compute.amazonaws.com:8080/auth/login`,
+        `http://ec2-54-210-18-218.compute-1.amazonaws.com:8080/auth/login`,
         loginData
       );
       console.log("Air login response:", response.data);
