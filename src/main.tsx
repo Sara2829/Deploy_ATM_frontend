@@ -9,10 +9,10 @@ const DebugComponent = () => {
   )
 }
 
-// Locate the root element
-const container = document.getElementById('root')
+// Ensure root element exists and assert its type
+const container = document.getElementById('root') as HTMLElement
 
-// Render the debug component if the container exists
-if (container) {
-  createRoot(container).render(<DebugComponent />)
-}
+// Render the debug component
+createRoot(container).render(<DebugComponent />)
+
+console.log('main.tsx is running!')
