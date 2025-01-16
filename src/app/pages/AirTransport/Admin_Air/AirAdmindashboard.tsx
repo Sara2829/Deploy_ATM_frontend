@@ -184,7 +184,7 @@ const AirAdmindashboard: React.FC = () => {
                 <tbody>
                   {flights.map((flight: { id: number; flightName: string; departure: string; arrival: string; source: string; destination: string; price: string; airline: string; flightClass: string }) => (
                     <tr key={flight.id}>
-                      <td>{flight.flightName || "N/A"}</td>
+                      <td>{flight.flightName}</td>
                       <td>{flight.departure}</td>
                       <td>{flight.arrival}</td>
                       <td>{flight.source}</td>

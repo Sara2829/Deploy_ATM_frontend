@@ -51,7 +51,7 @@ import UserdashBoardWater from "../pages/WaterTransport/Userinterface/UserdashBo
 import UserDashBoardAir from "../pages/AirTransport/UserUI_A/UserDashBoardAir";
 import UserDashboard from "../pages/GroundTransport/UserUI_G/UserDashboard";
 import PassengerEntryPage from "../pages/AirTransport/UserUI_A/PassengerEntryPage";
-import BaggageBook from "../pages/AirTransport/UserUI_A/baggageBook";
+import BaggageBook from "../pages/AirTransport/UserUI_A/BaggageBook";
 import Payment from "../pages/AirTransport/UserUI_A/Payment";
 import PaymentConfirmation from "../pages/AirTransport/UserUI_A/PaymentConfirmation";
 

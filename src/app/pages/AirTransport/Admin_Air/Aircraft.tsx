@@ -5,8 +5,20 @@ import AddFlight from "./Addaircraft"; // Import AddFlight modal
 
 const API_URL = import.meta.env.VITE_APP_API_URL;
 
+interface Flight {
+  id: number;
+  flightName: string;
+  departure: string;
+  arrival: string;
+  source: string;
+  destination: string;
+  price: number;
+  airline: string;
+  flightClass: string;
+}
+
 export const PlansPage: React.FC = () => {
-  const [flights, setFlights] = useState([]);
+  const [flights, setFlights] = useState<Flight[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [entriesPerPage, setEntriesPerPage] = useState(5);
   const [search, setSearch] = useState("");
@@ -16,7 +28,7 @@ export const PlansPage: React.FC = () => {
     const fetchFlights = async () => {
       try {
         const response = await axios.get(`${API_URL}/flights/all`);
-        setFlights(response.data);
+        setFlights(response.data as Flight[]);
         console.log("Flights response:", response.data);
       } catch (error) {
         console.error("Error fetching flights:", error);
@@ -25,8 +37,6 @@ export const PlansPage: React.FC = () => {
 
     fetchFlights();
   }, []);
-
-  console.log(flights);
 
   const filteredFlights = flights.filter((flight) =>
     flight.flightName.toLowerCase().includes(search.toLowerCase())
@@ -45,16 +55,7 @@ export const PlansPage: React.FC = () => {
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setSearch(e.target.value);
 
-  const handleAddFlight = (newFlight: {
-    flightName: string;
-    departure: string;
-    arrival: string;
-    source: string;
-    destination: string;
-    price: number;
-    airline: string;
-    flightClass: string;
-  }) => {
+  const handleAddFlight = (newFlight: Omit<Flight, "id">) => {
     setFlights([...flights, { ...newFlight, id: flights.length + 1 }]);
   };
 
@@ -146,7 +147,7 @@ export const PlansPage: React.FC = () => {
                         <button
                           type="button"
                           className="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
-                          onClick={()=>alert("clicked")}
+                          onClick={() => alert("clicked")}
                           // Delete button functionality
                         >
                           <i className="ki-duotone ki-trash fs-3 text-danger">

@@ -4,10 +4,25 @@ import axios from "axios";
 
 const API_URL = import.meta.env.VITE_APP_API_URL;
 
+interface FlightSearchState {
+  source: string;
+  destination: string;
+  departureDate: string;
+  returnDate?: string;
+  numPassengers: number;
+  travelClass: string;
+}
+
 const AirCard: React.FC = () => {
   const location = useLocation();
-  const { source, destination, departureDate, returnDate, numPassengers, travelClass } =
-    location.state || {};
+  const state = location.state as FlightSearchState;
+
+  if (!state) {
+    return <div>Error: Missing search criteria. Please start your search again.</div>;
+  }
+
+  const { source, destination, departureDate, returnDate, numPassengers, travelClass } = state;
+
   const [planes, setPlanes] = useState<any[]>([]);
   const [filteredPlanes, setFilteredPlanes] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -36,7 +51,7 @@ const AirCard: React.FC = () => {
       })
       .then((response) => {
         setPlanes(response.data);
-        setFilteredPlanes(response.data); // Set the initial filtered list
+        setFilteredPlanes(response.data);
         setIsLoading(false);
       })
       .catch(() => {
@@ -103,10 +118,10 @@ const AirCard: React.FC = () => {
             borderRadius: "8px",
             boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
             height: "fit-content",
-            position: "sticky", // Make it sticky
-            top: "100px", // Adjusted to push it down more
-            maxHeight: "calc(100vh - 100px)", // Adjusted to match the new top value
-            overflowY: "auto", // Allow scrolling inside the filter if needed
+            position: "sticky",
+            top: "100px",
+            maxHeight: "calc(100vh - 100px)",
+            overflowY: "auto",
           }}
         >
           <h4 style={{ marginBottom: "1rem", fontWeight: "bold", color: "#333" }}>Filters</h4>
